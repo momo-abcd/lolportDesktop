@@ -15,12 +15,25 @@ import java.io.IOException;
  */
 public class App extends Application {
 
+    private double x, y;
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.TRANSPARENT);
-        scene = new Scene(loadFXML("primary"));
+        Parent root = loadFXML("primary");
+
+        root.setOnMousePressed(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - x);
+            stage.setY(event.getScreenY() - y);
+        });
+
+        scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.setTitle("연습!");
