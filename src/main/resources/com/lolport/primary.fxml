@@ -5,28 +5,28 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="61.0" prefWidth="380.0" style="-fx-background-color: #3d4956;">
          <children>
             <ImageView layoutX="44.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/setting.png" />
+                  <Image url="@../../images/setting.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="24.0" fitWidth="32.0" layoutX="133.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/user.png" />
+                  <Image url="@../../images/user.png" />
                </image>
             </ImageView>
             <ImageView layoutX="222.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/upload.png" />
+                  <Image url="@../../images/upload.png" />
                </image>
             </ImageView>
             <ImageView layoutX="312.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/power.png" />
+                  <Image url="@../../images/power.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
