@@ -1,0 +1,8 @@
+@font-face {
+    font-family:'Pretendard Medium'
+    src:url:("../fonts/Pretendard-Medium.otf");
+}
+* {
+    -fx-font-family: 'Pretendard Medium';
+    -fx-font-size:13px;
+}

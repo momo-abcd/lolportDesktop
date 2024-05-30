@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -34,6 +35,7 @@ public class App extends Application {
         });
 
         scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.setTitle("연습!");
