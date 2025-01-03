@@ -21,7 +21,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        stage.initStyle(StageStyle.TRANSPARENT);
         Parent root = loadFXML("primary");
 
         root.setOnMousePressed(event -> {
@@ -33,12 +32,16 @@ public class App extends Application {
             stage.setX(event.getScreenX() - x);
             stage.setY(event.getScreenY() - y);
         });
-
+        Font.getDefault().getName();
+        Font.getFontNames();
         scene = new Scene(root);
+        System.out.println(Font.loadFont(getClass().getResource("/fonts/GmarketSansTTFLight.ttf").toExternalForm(), 10).getName());
         scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.setTitle("연습!");
+        stage.initStyle(StageStyle.TRANSPARENT);
+
         stage.sizeToScene();
         stage.show();
     }
@@ -46,7 +49,7 @@ public class App extends Application {
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
         Stage stage = (Stage) scene.getWindow();
-//        stage.sizeToScene();
+        stage.sizeToScene();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
