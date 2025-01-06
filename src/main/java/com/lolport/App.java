@@ -1,5 +1,6 @@
 package com.lolport;
 
+import com.lolport.capture.SettingController;
 import com.lolport.capture.overlay.ChatOverlay;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -68,41 +69,42 @@ public class App extends Application {
     }
 
     private void overlay(Stage mainStage) {
-        Button btn = new Button("오버레이 기능");
-        Pane pane = new Pane();
-        pane.getChildren().add(btn);
-        Scene newScene = new Scene(pane, 500, 400);
-
-        btn.setOnAction(actionEvent ->  {
-
-            Pane p = new Pane();
-//            p.setBackground(Background.fill(Color.LIGHTGRAY));
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            Canvas canvas = new Canvas(screenSize.getWidth(), screenSize.getHeight());
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-            ChatOverlay overlay = new ChatOverlay(gc);
-
-            gc.setFill(Color.web("#808080", 0.2));
-            gc.fillRect(0,0, screenSize.getWidth(), screenSize.getHeight());
-            p.getChildren().add(canvas);
-            p.setBackground(Background.fill(Color.web("#000000", 0)));
-            p.setMouseTransparent(false);
-            canvas.setMouseTransparent(false);
-            p.getChildren().add(overlay);
-            p.setPickOnBounds(true);
-            Scene grayScreen = new Scene(p, screenSize.getWidth(), screenSize.getHeight(),Color.TRANSPARENT);
-//            grayScreen.setFill(Color.RED);
-//            mainStage.setOpacity(0.4);
-//            mainStage.setOpacity(0);
-            mainStage.setScene(grayScreen);
-            mainStage.setX(0);
-            mainStage.setY(0);
-
-
-        });
-        btn.fire();
-
-        mainStage.setScene(newScene);
+        SettingController controller = new SettingController(mainStage, scene);
+//        Button btn = new Button("오버레이 기능");
+//        Pane pane = new Pane();
+//        pane.getChildren().add(btn);
+//        Scene newScene = new Scene(pane, 500, 400);
+//
+//        btn.setOnAction(actionEvent ->  {
+//
+//            Pane p = new Pane();
+////            p.setBackground(Background.fill(Color.LIGHTGRAY));
+//            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//            Canvas canvas = new Canvas(screenSize.getWidth(), screenSize.getHeight());
+//            GraphicsContext gc = canvas.getGraphicsContext2D();
+//            ChatOverlay overlay = new ChatOverlay(gc);
+//
+//            gc.setFill(Color.web("#808080", 0.2));
+//            gc.fillRect(0,0, screenSize.getWidth(), screenSize.getHeight());
+//            p.getChildren().add(canvas);
+//            p.setBackground(Background.fill(Color.web("#000000", 0)));
+//            p.setMouseTransparent(false);
+//            canvas.setMouseTransparent(false);
+//            p.getChildren().add(overlay);
+//            p.setPickOnBounds(true);
+//            Scene grayScreen = new Scene(p, screenSize.getWidth(), screenSize.getHeight(),Color.TRANSPARENT);
+////            grayScreen.setFill(Color.RED);
+////            mainStage.setOpacity(0.4);
+////            mainStage.setOpacity(0);
+//            mainStage.setScene(grayScreen);
+//            mainStage.setX(0);
+//            mainStage.setY(0);
+//
+//
+//        });
+//        btn.fire();
+//
+//        mainStage.setScene(newScene);
     }
 
 
