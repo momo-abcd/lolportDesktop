@@ -1,4 +1,4 @@
-package com.lolport.capture;
+package com.lolport.capture.overlay;
 
 public interface OverLay {
     void drawTransGray(); // 전체화면을 회색 반투명으로 색칠하는 기능

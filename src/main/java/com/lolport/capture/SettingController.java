@@ -1,15 +1,11 @@
 package com.lolport.capture;
 
-import com.lolport.capture.overlay.ChatOverlay;
 import com.lolport.capture.overlay.ChatOverlayImpl;
-import javafx.scene.Node;
+import com.lolport.capture.overlay.OverLay;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.awt.*;
 
 public class SettingController {
     private final Stage stage; // 블루레이 사각형 설정시 프로그램 투명화를 위해 필요

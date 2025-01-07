@@ -1,14 +1,15 @@
 package com.lolport.capture.overlay;
 
-import com.lolport.capture.OverLay;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
 
 import java.awt.*;
 
@@ -23,6 +24,8 @@ public class ChatOverlayImpl implements OverLay {
     private final Stage stage;
     private final Scene scene;
 
+    private Scene newScene;
+
     public ChatOverlayImpl(Stage stage, Scene settingScene, Node contentSide) {
         this.stage = stage;
         this.scene = settingScene;
@@ -31,8 +34,8 @@ public class ChatOverlayImpl implements OverLay {
         contentSide.setOpacity(0);
 
         Pane p = new Pane();
-        Scene newScene = new Scene(p);
-        stage.setScene(newScene);
+//        newScene = new Scene(p, );
+//        stage.setScene(newScene);
         // 회색 반투명 화면 생성
         drawTransGray();
         drawOverlayBox();
@@ -48,7 +51,12 @@ public class ChatOverlayImpl implements OverLay {
 
         fullScreenPane = new Pane();
         fullScreenPane.getChildren().add(this.canvas);
-        scene.setRoot(fullScreenPane);
+        fullScreenPane.setBackground(Background.fill(Color.web("#000000", 0)));
+        newScene = new Scene(fullScreenPane, screen.getWidth(), screen.getHeight(), Color.TRANSPARENT);
+        newScene.setRoot(fullScreenPane);
+        stage.setScene(newScene);
+        stage.setX(0);
+        stage.setY(0);
     }
 
     @Override
@@ -60,9 +68,10 @@ public class ChatOverlayImpl implements OverLay {
     // 여기서 생성한 fullScreenPane을 Scene에 붙여야함
     public void drawOverlayBox() {
 //        fullScreenPane = new Pane();
-        Rectangle box = new Rectangle(100, 100, javafx.scene.paint.Color.WHITE);
-        box.setOpacity(0.1);
+        Rectangle box = new Rectangle(100, 100, Color.web("#000000", 0.01));
+//        box.setOpacity(0.1);
         box.setStroke(Color.BLUE);
+        box.setStrokeWidth(3.0);
         fullScreenPane.getChildren().add(box);
 
         // Initial offsets for dragging
@@ -73,6 +82,9 @@ public class ChatOverlayImpl implements OverLay {
         box.setOnMousePressed(event -> {
             offsetX[0] = event.getSceneX() - box.getTranslateX();
             offsetY[0] = event.getSceneY() - box.getTranslateY();
+
+            gc.setFill(Color.web("#808080", 0.2));
+            gc.fillRect(offsetX[0], offsetY[0], 100, 100);
         });
 
         // Mouse dragged event
