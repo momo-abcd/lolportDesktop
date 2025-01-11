@@ -1,0 +1,20 @@
+.navBar {
+	-fx-background-color: #353a57;
+	-fx-background-radius: 20px;
+}
+.iconBox {
+	-fx-pref-width: 131px;
+	-fx-pref-height: 64px;
+	-fx-background-color: #748bf1;
+	-fx-background-radius: 10px;
+}
+
+.navItem {
+	-fx-background-color: #303552;
+	-fx-pref-width: 131px;
+	-fx-pref-height: 36px;
+	-fx-text-fill: white;
+	-fx-font-size: 12px;
+	-fx-font-family: "Noto Sans KR";
+	/* -fx-font-weight: bold; */
+}
