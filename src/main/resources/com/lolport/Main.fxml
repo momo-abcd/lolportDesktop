@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,18 +10,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="663.0" prefWidth="936.0" styleClass="container" stylesheets="@../css/contentBar.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lolport.fxml.Main">
+<AnchorPane prefHeight="663.0" prefWidth="936.0" styleClass="container" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lolport.fxml.Main">
     <children>
         <Pane id="navBar" prefHeight="663.0" prefWidth="175.0" styleClass="navBar" stylesheets="@../css/navbar.css">
          <children>
-            <Pane layoutX="22.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" styleClass="iconBox" stylesheets="@../css/navbar.css">
+            <Pane layoutX="20.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" styleClass="iconBox" stylesheets="@../css/navbar.css">
                <children>
                   <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="imageBox">
                      <image>
                         <Image url="@../../../../resources/images/logoIcon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="35.0" fitWidth="15.0" layoutX="101.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="35.0" fitWidth="15.0" layoutX="131.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../resources/images/logoRightIcon.png" />
                      </image>
@@ -43,4 +44,8 @@
             </GridPane>
          </children></Pane>
     </children>
+   <stylesheets>
+      <URL value="@../css/contentBar.css" />
+      <URL value="@../../../java/com/lolport/css/navbar.css" />
+   </stylesheets>
 </AnchorPane>
