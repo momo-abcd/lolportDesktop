@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -26,11 +27,12 @@ public class Main extends Application {
 
         Parent root = loadFXML("Main");
 
-        Font.getDefault().getName();
-        Font.getFontNames();
-        scene = new Scene(root);
+//        Font.getDefault().getName();
+//        Font.getFontNames();
+        scene = new Scene(root, Color.TRANSPARENT);
         stage.setScene(scene);
         stage.setTitle("연습!");
+//         메뉴창 없애는 코드 ( 나중에 주석 풀어야함 )
         stage.initStyle(StageStyle.TRANSPARENT);
 
         stage.sizeToScene();

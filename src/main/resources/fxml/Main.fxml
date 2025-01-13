@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="663.0" prefWidth="936.0" styleClass="container" stylesheets="@../css/contentBar.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lolport.controller.NavBarController">
+<AnchorPane prefHeight="663.0" prefWidth="936.0" styleClass="parentPane" stylesheets="@../css/contentBar.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lolport.controller.NavBarController">
     <children>
         <Pane id="navBar" prefHeight="663.0" prefWidth="175.0" styleClass="navBar" stylesheets="@../css/navbar.css">
          <children>
@@ -62,5 +62,6 @@
                </children>
             </GridPane>
          </children></Pane>
+      <Pane fx:id="contentBox" layoutX="200.0" prefHeight="663.0" prefWidth="736.0" styleClass="contentContainer" stylesheets="@../css/contentBar.css" />
     </children>
 </AnchorPane>

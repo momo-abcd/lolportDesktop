@@ -3,10 +3,13 @@ package com.lolport.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -116,6 +119,17 @@ public class NavBarController implements Initializable {
     @FXML
     public void mainPageHandler(ActionEvent e) {
         navBtnClickEventHandler((Button)e.getSource());
+        Button source = (Button) e.getSource();
+        Parent root = source.getScene().getRoot();
+        root.getChildrenUnmodifiable().forEach(node -> {
+            if(node.idProperty().get().equals("contentBox")) {
+                Text text = new Text("메인페이지입니다.");
+                text.setLayoutX(200);
+                text.setLayoutY(200);
+
+                ((Pane) node).getChildren().addAll(text);
+            }
+        });
     }
     @FXML
     public void uploadHandler(ActionEvent e) {
@@ -187,4 +201,5 @@ public class NavBarController implements Initializable {
         }
         return iconPng + color;
     }
+
 }
