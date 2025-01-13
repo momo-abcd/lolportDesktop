@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.net.URL?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,7 +27,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <GridPane layoutX="18.0" layoutY="141.0" prefHeight="262.0" prefWidth="160.0" vgap="10.0">
+            <GridPane fx:id="navGrid" layoutX="18.0" layoutY="141.0" prefHeight="262.0" prefWidth="160.0" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -40,27 +39,23 @@
                   <RowConstraints minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="homeBtn" prefWidth="139.0" ripplerFill="TRANSPARENT" styleClass="navItem" text="  메인페이지">
+                  <JFXButton fx:id="homeBtn" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  메인페이지">
                      <graphic>
                         <ImageView fx:id="homeImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <stylesheets>
-                        <URL value="@../css/navbar.css" />
-                        <URL value="@../css/navbar.css" />
-                     </stylesheets></JFXButton>
-                  <JFXButton fx:id="uploadBtn" prefWidth="139.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  업로드" GridPane.rowIndex="1">
+                     </graphic></JFXButton>
+                  <JFXButton fx:id="uploadBtn" maxWidth="1.7976931348623157E308" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  업로드" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fx:id="uploadImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="galleryBtn" prefWidth="139.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  앨범" GridPane.rowIndex="2">
+                  <JFXButton fx:id="galleryBtn" maxWidth="1.7976931348623157E308" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  앨범" GridPane.rowIndex="2">
                      <graphic>
                         <ImageView fx:id="galleryImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="howBtn" prefWidth="139.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  사용법" GridPane.rowIndex="3">
+                  <JFXButton fx:id="howBtn" maxWidth="1.7976931348623157E308" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  사용법" GridPane.rowIndex="3">
                      <graphic>
                         <ImageView fx:id="howImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="settingBtn" prefWidth="139.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  설정" GridPane.rowIndex="4">
+                  <JFXButton fx:id="settingBtn" maxWidth="1.7976931348623157E308" prefHeight="44.0" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  설정" GridPane.rowIndex="4">
                      <graphic>
                         <ImageView fx:id="settingImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>

@@ -20,12 +20,19 @@
 	-fx-font-family: "Noto Sans KR";
 	/* -fx-font-weight: bold; */
 	-fx-alignment: center;
-
 	-fx-alignment: CENTER_LEFT;
+}
+.navItem:focused{
+/*	-fx-background-color: #1B1E2E;*/
+	-fx-background-color: #303552;
+	-jfx-button-type:RAISED;
 }
 .navItem:hover {
 	-fx-background-color: #303552;
 	-fx-cursor: hand;
+}
+.notfocused {
+	-fx-text-fill:#6F758B;
 }
 .navGrid {
 	-fx-text-alignment: center;
