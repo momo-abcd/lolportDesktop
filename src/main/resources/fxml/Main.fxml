@@ -39,23 +39,23 @@
                   <RowConstraints minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="homeBtn" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  메인페이지">
+                  <JFXButton fx:id="homeBtn" maxWidth="1.7976931348623157E308" onAction="#mainPageHandler" prefHeight="45.0" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  메인페이지">
                      <graphic>
                         <ImageView fx:id="homeImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="uploadBtn" maxWidth="1.7976931348623157E308" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  업로드" GridPane.rowIndex="1">
+                  <JFXButton fx:id="uploadBtn" maxWidth="1.7976931348623157E308" onAction="#uploadHandler" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  업로드" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fx:id="uploadImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="galleryBtn" maxWidth="1.7976931348623157E308" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  앨범" GridPane.rowIndex="2">
+                  <JFXButton fx:id="galleryBtn" maxWidth="1.7976931348623157E308" onAction="#galleryHandler" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  앨범" GridPane.rowIndex="2">
                      <graphic>
                         <ImageView fx:id="galleryImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="howBtn" maxWidth="1.7976931348623157E308" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  사용법" GridPane.rowIndex="3">
+                  <JFXButton fx:id="howBtn" maxWidth="1.7976931348623157E308" onAction="#howHandler" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  사용법" GridPane.rowIndex="3">
                      <graphic>
                         <ImageView fx:id="howImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>
-                  <JFXButton fx:id="settingBtn" maxWidth="1.7976931348623157E308" prefHeight="44.0" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  설정" GridPane.rowIndex="4">
+                  <JFXButton fx:id="settingBtn" maxWidth="1.7976931348623157E308" onAction="#settingHandler" prefHeight="44.0" prefWidth="160.0" ripplerFill="TRANSPARENT" styleClass="navItem" stylesheets="@../css/navbar.css" text="  설정" GridPane.rowIndex="4">
                      <graphic>
                         <ImageView fx:id="settingImg" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></JFXButton>

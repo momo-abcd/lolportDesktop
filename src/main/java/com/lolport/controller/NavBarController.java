@@ -1,24 +1,17 @@
 package com.lolport.controller;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import org.controlsfx.control.spreadsheet.Grid;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class NavBarController implements Initializable {
     @FXML
@@ -41,9 +34,9 @@ public class NavBarController implements Initializable {
     private ImageView howImg;
     @FXML
     private ImageView settingImg;
-
     @FXML
     private GridPane navGrid;
+
 
     @FXML
     private void handleNavStatus(ActionEvent e) {
@@ -75,11 +68,10 @@ public class NavBarController implements Initializable {
         }
     }
 
-    private Map<String, Image> iconMap = new HashMap<>();
+    private final Map<String, Image> iconMap = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        ImageView uploadIcon = new ImageView(getClass().getResource("/images/icon/home.svg").toString()); // 파일 경로 지정
         Image homeWhite = new Image(getClass().getResource("/images/icon/homeWhite.png").toString());
         Image uploadWhite = new Image(getClass().getResource("/images/icon/uploadWhite.png").toString());
         Image galleryWhite = new Image(getClass().getResource("/images/icon/galleryWhite.png").toString());
@@ -109,53 +101,90 @@ public class NavBarController implements Initializable {
         galleryImg.setImage(galleryBlack);
         howImg.setImage(howBlack);
         settingImg.setImage(settingBlack);
-        String icon = "url(\"" + getClass().getResource("/images/icon/homeBlack.png") + "\")";
-        homeImg.setStyle("-fx-image:" + icon);
 
-        homeBtn.setOnAction(this::handleNavStatus);
-//        Platform.runLater(() -> {
-//            homeBtn.requestFocus();
-//            navGrid.getChildren().forEach(navBtn -> {
-//                if (!navBtn.isFocused()) {
-//                    navBtn.getStyleClass().add("notfocused");
-//                }
-//            });
-//        });
-
-        navGrid.getChildren().forEach(navBtn -> {
-            if(!navBtn.isFocused()) {
-                navBtn.getStyleClass().add("notfocused");
-                navBtn.focusedProperty().addListener(((observableValue, aBoolean, newValue) -> handleFocusChange((Button)navBtn, newValue)));
+        
+        // 맨 처음 메인페이지가 포커싱 되었을 때 event 발생 시킴
+        homeBtn.focusedProperty().addListener((observableValue, aBoolean, newBoolean) -> {
+            // 지금 포커스가 된 상태라면
+            if (newBoolean) {
+                homeBtn.fire();
             }
         });
     }
 
-    private void handleFocusChange(Button currentBtn, Boolean isFocused) {
-        if(isFocused) {
-            String iconPng="";
-            switch (currentBtn.getId()) {
-                case "homeBtn":
-                    iconPng = "homeWhite";
-                    break;
-                case "uploadBtn":
-                    iconPng = "uploadWhite";
-                    break;
-                case "galleryBtn":
-                    iconPng = "galleryWhite";
-                    break;
-                case "howBtn":
-                    iconPng = "howWhite";
-                    break;
-                case "settingBtn":
-                    iconPng = "settingWhite";
-                    break;
-                default:
-                    break;
-            }
-                currentBtn.getStyleClass().remove("notfocused");
-                Image img = iconMap.get(iconPng);
-                ((ImageView)currentBtn.graphicProperty().get()).setImage(img);
 
+    @FXML
+    public void mainPageHandler(ActionEvent e) {
+        navBtnClickEventHandler((Button)e.getSource());
+    }
+    @FXML
+    public void uploadHandler(ActionEvent e) {
+        navBtnClickEventHandler((Button)e.getSource());
+    }
+    @FXML
+    public void galleryHandler(ActionEvent e) {
+        navBtnClickEventHandler((Button)e.getSource());
+
+    }
+    @FXML
+    public void howHandler(ActionEvent e) {
+        navBtnClickEventHandler((Button)e.getSource());
+
+    }
+    @FXML
+    public void settingHandler(ActionEvent e) {
+        navBtnClickEventHandler((Button)e.getSource());
+    }
+
+    private void navBtnClickEventHandler(Button btn) {
+        changeNavToWhite(btn);
+        changeNavToBlack();
+    }
+
+    private void changeNavToWhite(Button btn) {
+        // 해당 네비게이션이 클릭 되면 클릭 되었다는 효과를 줘야함( 선택 되었다는 효과)
+        // 즉, 글자를 흰색으로, 아이콘을 흰색으로 바꿔줘야함
+        Image homeWhite = iconMap.get(findBlackOrWhiteImg(btn.getId(), "White"));
+        // toggle용으로 remove를 해주고 add 함수를 이용해 focused를 추가해줌
+        btn.getStyleClass().remove("focused");
+        btn.getStyleClass().add("focused");
+        ((ImageView)btn.getGraphic()).setImage(homeWhite);
+    }
+
+    // 다른 네비게이션들은 모두 흑백으로 바꿔준다.
+    private void changeNavToBlack() {
+        navGrid.getChildren().forEach(node -> {
+            Button anotherBtn = (Button) node;
+            if (!anotherBtn.isFocused()) {
+                anotherBtn.getStyleClass().remove("focused");
+                ((ImageView)anotherBtn.getGraphic()).setImage(iconMap.get(findBlackOrWhiteImg(anotherBtn.getId(), "Black")));
+            }
+        });
+    }
+
+    // 버튼의 ID 값으로 어떤 검정아이콘 이미지를 꺼내야하는지 구해주는 함수
+    // iconMap에 들어갈 파라미터를 구하는 함수임
+    private String findBlackOrWhiteImg(String id, String color) { // color는 Black or White 값
+        String iconPng="";
+        switch (id) {
+            case "homeBtn":
+                iconPng = "home";
+                break;
+            case "uploadBtn":
+                iconPng = "upload";
+                break;
+            case "galleryBtn":
+                iconPng = "gallery";
+                break;
+            case "howBtn":
+                iconPng = "how";
+                break;
+            case "settingBtn":
+                iconPng = "setting";
+                break;
+            default:
+                break;
         }
+        return iconPng + color;
     }
 }

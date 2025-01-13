@@ -14,7 +14,7 @@
 	/*	-fx-background-color: #303552;*/
 	-fx-pref-width: 146px;
 	-fx-pref-height: 46px;
-	-fx-text-fill: white;
+	-fx-text-fill: #6F758B;
 	-fx-spacing: 4px;
 	-fx-font-size: 18px;
 	-fx-font-family: "Noto Sans KR";
@@ -24,15 +24,15 @@
 }
 .navItem:focused{
 /*	-fx-background-color: #1B1E2E;*/
-	-fx-background-color: #303552;
+/*	-fx-background-color: #303552;*/
 	-jfx-button-type:RAISED;
 }
 .navItem:hover {
 	-fx-background-color: #303552;
 	-fx-cursor: hand;
 }
-.notfocused {
-	-fx-text-fill:#6F758B;
+.focused {
+	-fx-text-fill:white;
 }
 .navGrid {
 	-fx-text-alignment: center;
