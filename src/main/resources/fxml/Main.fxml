@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,23 +11,35 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="663.0" prefWidth="936.0" styleClass="parentPane" stylesheets="@../css/contentBar.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lolport.controller.NavBarController">
     <children>
         <Pane id="navBar" prefHeight="663.0" prefWidth="175.0" styleClass="navBar" stylesheets="@../css/navbar.css">
          <children>
-            <Pane layoutX="20.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" styleClass="iconBox" stylesheets="@../css/navbar.css">
+            <Pane fx:id="recBox" layoutX="20.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" styleClass="iconBox" stylesheets="@../css/navbar.css">
                <children>
-                  <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="imageBox">
-                     <image>
-                        <Image url="@../images/logoIcon.png" />
-                     </image>
-                  </ImageView>
                   <ImageView fitHeight="35.0" fitWidth="15.0" layoutX="131.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/logoRightIcon.png" />
                      </image>
                   </ImageView>
+                  <JFXToggleButton fx:id="toggleBtn" layoutY="4.0" styleClass="recordToggle" stylesheets="@../css/navbar.css" text=" " toggleColor="RED" toggleLineColor="#d3a8a8" />
+                  <StackPane layoutX="34.0" layoutY="23.0" pickOnBounds="false" prefHeight="87.0" prefWidth="104.0" stylesheets="@../css/navbar.css" visible="false">
+                     <styleClass>
+                        <String fx:value="recording" />
+                        <String fx:value="rec" />
+                     </styleClass>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </StackPane>
+                  <StackPane layoutX="64.0" prefHeight="64.0" prefWidth="52.0" visible="false">
+                     <children>
+                        <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="recText" text="ON" />
+                     </children>
+                  </StackPane>
                </children>
             </Pane>
             <GridPane fx:id="navGrid" layoutX="18.0" layoutY="141.0" prefHeight="262.0" prefWidth="160.0" vgap="10.0">

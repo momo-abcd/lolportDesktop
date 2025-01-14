@@ -1,14 +1,20 @@
 package com.lolport.controller;
 
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -40,36 +46,10 @@ public class NavBarController implements Initializable {
     @FXML
     private GridPane navGrid;
 
-
     @FXML
-    private void handleNavStatus(ActionEvent e) {
-        Button currentBtn =  (Button)e.getSource();
-        String iconPng="";
-        switch (currentBtn.getId()) {
-            case "homeBtn":
-                iconPng = "homeWhite";
-                break;
-            case "uploadBtn":
-                iconPng = "uploadWhite";
-                break;
-            case "galleryBtn":
-                iconPng = "galleryWhite";
-                break;
-            case "howBtn":
-                iconPng = "howWhite";
-                break;
-            case "settingBtn":
-                iconPng = "settingWhite";
-                break;
-            default:
-                break;
-        }
-        if(currentBtn.isFocused()) {
-            currentBtn.getStyleClass().remove("notfocused");
-            Image img = iconMap.get(iconPng);
-            ((ImageView)currentBtn.graphicProperty().get()).setImage(img);
-        }
-    }
+    private Pane recBox;
+    @FXML
+    private JFXToggleButton toggleBtn;
 
     private final Map<String, Image> iconMap = new HashMap<>();
 
@@ -105,7 +85,20 @@ public class NavBarController implements Initializable {
         howImg.setImage(howBlack);
         settingImg.setImage(settingBlack);
 
-        
+
+        // 녹화 토글 버튼이 눌렸을 때, 실행되는 이벤트
+        toggleBtn.setOnAction(event -> {
+            if(toggleBtn.isSelected()) {
+                recBox.getChildren().get(2).setVisible(true);
+                recBox.getChildren().get(3).setVisible(true);recBox.getChildren().get(2).setDisable(true);
+
+            } else {
+                recBox.getChildren().get(2).setVisible(false);
+
+                recBox.getChildren().get(3).setVisible(false);
+            }
+        });
+
         // 맨 처음 메인페이지가 포커싱 되었을 때 event 발생 시킴
         homeBtn.focusedProperty().addListener((observableValue, aBoolean, newBoolean) -> {
             // 지금 포커스가 된 상태라면
