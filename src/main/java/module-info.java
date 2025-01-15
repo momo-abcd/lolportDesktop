@@ -7,5 +7,6 @@ module com.lolport {
 
     opens com.lolport to javafx.fxml;
     opens com.lolport.controller to javafx.fxml;
+
     exports com.lolport;
 }

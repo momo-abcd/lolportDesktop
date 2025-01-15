@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
+<?import com.lolport.CustomJFXToggleButton?>
 <AnchorPane prefHeight="663.0" prefWidth="936.0" styleClass="parentPane" stylesheets="@../css/contentBar.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lolport.controller.NavBarController">
     <children>
         <Pane id="navBar" prefHeight="663.0" prefWidth="175.0" styleClass="navBar" stylesheets="@../css/navbar.css">
@@ -25,7 +26,7 @@
                         <Image url="@../images/logoRightIcon.png" />
                      </image>
                   </ImageView>
-                  <JFXToggleButton fx:id="toggleBtn" layoutY="4.0" styleClass="recordToggle" stylesheets="@../css/navbar.css" text=" " toggleColor="RED" toggleLineColor="#d3a8a8" />
+                  <CustomJFXToggleButton fx:id="toggleBtn" layoutY="4.0" styleClass="recordToggle" stylesheets="@../css/navbar.css" text=" " toggleColor="RED" toggleLineColor="#d3a8a8" />
                   <StackPane layoutX="34.0" layoutY="23.0" pickOnBounds="false" prefHeight="87.0" prefWidth="104.0" stylesheets="@../css/navbar.css" visible="false">
                      <styleClass>
                         <String fx:value="recording" />

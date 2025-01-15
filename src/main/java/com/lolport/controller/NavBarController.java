@@ -1,6 +1,7 @@
 package com.lolport.controller;
 
 import com.jfoenix.controls.JFXToggleButton;
+import com.lolport.CustomJFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -49,7 +50,7 @@ public class NavBarController implements Initializable {
     @FXML
     private Pane recBox;
     @FXML
-    private JFXToggleButton toggleBtn;
+    private CustomJFXToggleButton toggleBtn;
 
     private final Map<String, Image> iconMap = new HashMap<>();
 
@@ -98,6 +99,10 @@ public class NavBarController implements Initializable {
                 recBox.getChildren().get(3).setVisible(false);
             }
         });
+
+        // 토글버튼 녹화 애니메이션
+        toggleBtn.lookup(".thumb");
+
 
         // 맨 처음 메인페이지가 포커싱 되었을 때 event 발생 시킴
         homeBtn.focusedProperty().addListener((observableValue, aBoolean, newBoolean) -> {
