@@ -88,17 +88,17 @@ public class NavBarController implements Initializable {
 
 
         // 녹화 토글 버튼이 눌렸을 때, 실행되는 이벤트
-        toggleBtn.setOnAction(event -> {
-            if(toggleBtn.isSelected()) {
-                recBox.getChildren().get(2).setVisible(true);
-                recBox.getChildren().get(3).setVisible(true);recBox.getChildren().get(2).setDisable(true);
-
-            } else {
-                recBox.getChildren().get(2).setVisible(false);
-
-                recBox.getChildren().get(3).setVisible(false);
-            }
-        });
+//        toggleBtn.setOnAction(event -> {
+//            if(toggleBtn.isSelected()) {
+//                recBox.getChildren().get(2).setVisible(true);
+//                recBox.getChildren().get(3).setVisible(true);recBox.getChildren().get(2).setDisable(true);
+//
+//            } else {
+//                recBox.getChildren().get(2).setVisible(false);
+//
+//                recBox.getChildren().get(3).setVisible(false);
+//            }
+//        });
 
         // 토글버튼 녹화 애니메이션
         toggleBtn.lookup(".thumb");

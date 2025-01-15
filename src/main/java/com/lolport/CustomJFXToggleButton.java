@@ -12,6 +12,11 @@ import java.lang.reflect.Field;
 
 public class CustomJFXToggleButton extends JFXToggleButton {
 
+    public CustomJFXToggleButton() {
+        super();
+        this.getStylesheets().add(getClass().getResource("/css/navBar.css").toExternalForm());
+    }
+
     @Override
     protected Skin<?> createDefaultSkin() {
         return new CustomJFXToggleButtonSkin(this);
@@ -28,7 +33,6 @@ public class CustomJFXToggleButton extends JFXToggleButton {
                 Field thumbField = JFXToggleButtonSkin.class.getDeclaredField("circle");
                 thumbField.setAccessible(true);
                 this.thumb = (Circle) thumbField.get(this);
-
                 // 가져온 Circle에 애니메이션 추가
                 if (thumb != null) {
                     TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), thumb);

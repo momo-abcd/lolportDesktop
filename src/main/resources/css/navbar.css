@@ -61,7 +61,7 @@
     -fx-fill:#d30909;
 }
 
-.jfx-toggle-button Circle {
+.jfx-toggle-button:selected Circle {
 /*    -fx-fill:yellow;*/
     -fx-effect:dropshadow( two-pass-box ,  rgba(173,0,0,.3), 40, 0.9, 0, 0);
 /*    -jfx-toggle-color:blue;*/
