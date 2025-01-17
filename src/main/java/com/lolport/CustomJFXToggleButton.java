@@ -14,7 +14,7 @@ public class CustomJFXToggleButton extends JFXToggleButton {
 
     public CustomJFXToggleButton() {
         super();
-        this.getStylesheets().add(getClass().getResource("/css/navBar.css").toExternalForm());
+        this.getStylesheets().add(getClass().getResource("/css/navbar.css").toExternalForm());
     }
 
     @Override
