@@ -1,21 +1,15 @@
 package com.lolport.controller;
 
-import com.jfoenix.controls.JFXToggleButton;
-import com.lolport.CustomJFXToggleButton;
+import com.lolport.custom.CustomJFXToggleButton;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 import java.net.URL;

@@ -1,4 +1,4 @@
-package com.lolport;
+package com.lolport.custom;
 
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.skins.JFXToggleButtonSkin;

@@ -9,4 +9,6 @@ module com.lolport {
     opens com.lolport.controller to javafx.fxml;
 
     exports com.lolport;
+    exports com.lolport.custom;
+    opens com.lolport.custom to javafx.fxml;
 }
