@@ -15,19 +15,12 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class NavBarController implements Initializable {
     @FXML
     private Button homeBtn;
-    @FXML
-    private Button uploadBtn;
-    @FXML
-    private Button galleryBtn;
-    @FXML
-    private Button howBtn;
-    @FXML
-    private Button settingBtn;
     @FXML
     private ImageView homeImg;
     @FXML
@@ -42,25 +35,23 @@ public class NavBarController implements Initializable {
     private GridPane navGrid;
 
     @FXML
-    private Pane recBox;
-    @FXML
     private CustomJFXToggleButton toggleBtn;
 
     private final Map<String, Image> iconMap = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image homeWhite = new Image(getClass().getResource("/images/icon/homeWhite.png").toString());
-        Image uploadWhite = new Image(getClass().getResource("/images/icon/uploadWhite.png").toString());
-        Image galleryWhite = new Image(getClass().getResource("/images/icon/galleryWhite.png").toString());
-        Image howWhite = new Image(getClass().getResource("/images/icon/howWhite.png").toString());
-        Image settingWhite = new Image(getClass().getResource("/images/icon/settingWhite.png").toString());
+        Image homeWhite = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/homeWhite.png")).toExternalForm());
+        Image uploadWhite = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/uploadWhite.png")).toExternalForm());
+        Image galleryWhite = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/galleryWhite.png")).toExternalForm());
+        Image howWhite = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/howWhite.png")).toExternalForm());
+        Image settingWhite = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/settingWhite.png")).toExternalForm());
 
-        Image homeBlack = new Image(getClass().getResource("/images/icon/homeBlack.png").toString());
-        Image uploadBlack = new Image(getClass().getResource("/images/icon/uploadBlack.png").toString());
-        Image galleryBlack = new Image(getClass().getResource("/images/icon/galleryBlack.png").toString());
-        Image howBlack = new Image(getClass().getResource("/images/icon/howBlack.png").toString());
-        Image settingBlack = new Image(getClass().getResource("/images/icon/settingBlack.png").toString());
+        Image homeBlack = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/homeBlack.png")).toExternalForm());
+        Image uploadBlack = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/uploadBlack.png")).toExternalForm());
+        Image galleryBlack = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/galleryBlack.png")).toExternalForm());
+        Image howBlack = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/howBlack.png")).toExternalForm());
+        Image settingBlack = new Image(Objects.requireNonNull(getClass().getResource("/images/icon/settingBlack.png")).toExternalForm());
 
         iconMap.put("homeWhite", homeWhite);
         iconMap.put("uploadWhite", uploadWhite);
@@ -80,20 +71,6 @@ public class NavBarController implements Initializable {
         howImg.setImage(howBlack);
         settingImg.setImage(settingBlack);
 
-
-        // 녹화 토글 버튼이 눌렸을 때, 실행되는 이벤트
-//        toggleBtn.setOnAction(event -> {
-//            if(toggleBtn.isSelected()) {
-//                recBox.getChildren().get(2).setVisible(true);
-//                recBox.getChildren().get(3).setVisible(true);recBox.getChildren().get(2).setDisable(true);
-//
-//            } else {
-//                recBox.getChildren().get(2).setVisible(false);
-//
-//                recBox.getChildren().get(3).setVisible(false);
-//            }
-//        });
-
         // 토글버튼 녹화 애니메이션
         toggleBtn.lookup(".thumb");
 
@@ -110,11 +87,11 @@ public class NavBarController implements Initializable {
 
     @FXML
     public void mainPageHandler(ActionEvent e) {
-        navBtnClickEventHandler((Button)e.getSource());
+        navBtnClickEventHandler((Button) e.getSource());
         Button source = (Button) e.getSource();
         Parent root = source.getScene().getRoot();
         root.getChildrenUnmodifiable().forEach(node -> {
-            if(node.idProperty().get().equals("contentBox")) {
+            if (node.idProperty().get().equals("contentBox")) {
                 Text text = new Text("메인페이지입니다.");
                 text.setLayoutX(200);
                 text.setLayoutY(200);
@@ -123,23 +100,27 @@ public class NavBarController implements Initializable {
             }
         });
     }
+
     @FXML
     public void uploadHandler(ActionEvent e) {
-        navBtnClickEventHandler((Button)e.getSource());
+        navBtnClickEventHandler((Button) e.getSource());
     }
+
     @FXML
     public void galleryHandler(ActionEvent e) {
-        navBtnClickEventHandler((Button)e.getSource());
+        navBtnClickEventHandler((Button) e.getSource());
 
     }
+
     @FXML
     public void howHandler(ActionEvent e) {
-        navBtnClickEventHandler((Button)e.getSource());
+        navBtnClickEventHandler((Button) e.getSource());
 
     }
+
     @FXML
     public void settingHandler(ActionEvent e) {
-        navBtnClickEventHandler((Button)e.getSource());
+        navBtnClickEventHandler((Button) e.getSource());
     }
 
     private void navBtnClickEventHandler(Button btn) {
@@ -154,7 +135,7 @@ public class NavBarController implements Initializable {
         // toggle용으로 remove를 해주고 add 함수를 이용해 focused를 추가해줌
         btn.getStyleClass().remove("focused");
         btn.getStyleClass().add("focused");
-        ((ImageView)btn.getGraphic()).setImage(homeWhite);
+        ((ImageView) btn.getGraphic()).setImage(homeWhite);
     }
 
     // 다른 네비게이션들은 모두 흑백으로 바꿔준다.
@@ -163,7 +144,7 @@ public class NavBarController implements Initializable {
             Button anotherBtn = (Button) node;
             if (!anotherBtn.isFocused()) {
                 anotherBtn.getStyleClass().remove("focused");
-                ((ImageView)anotherBtn.getGraphic()).setImage(iconMap.get(findBlackOrWhiteImg(anotherBtn.getId(), "Black")));
+                ((ImageView) anotherBtn.getGraphic()).setImage(iconMap.get(findBlackOrWhiteImg(anotherBtn.getId(), "Black")));
             }
         });
     }
@@ -171,7 +152,7 @@ public class NavBarController implements Initializable {
     // 버튼의 ID 값으로 어떤 검정아이콘 이미지를 꺼내야하는지 구해주는 함수
     // iconMap에 들어갈 파라미터를 구하는 함수임
     private String findBlackOrWhiteImg(String id, String color) { // color는 Black or White 값
-        String iconPng="";
+        String iconPng = "";
         switch (id) {
             case "homeBtn":
                 iconPng = "home";

@@ -2,7 +2,6 @@ package com.lolport.custom;
 
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.skins.JFXToggleButtonSkin;
-
 import javafx.animation.*;
 import javafx.scene.control.Skin;
 import javafx.scene.effect.BlurType;
@@ -12,17 +11,17 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.lang.reflect.Field;
+import java.util.Objects;
 
 
 public class CustomJFXToggleButton extends JFXToggleButton {
 
-    Timeline t1 = new Timeline();
     SequentialTransition sq = new SequentialTransition();
 
 
     public CustomJFXToggleButton() {
         super();
-        this.getStylesheets().add(getClass().getResource("/css/navbar.css").toExternalForm());
+        this.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/navbar.css")).toExternalForm());
     }
 
     // 동그라미에 애니메이션 효과 주기 위한 Event 처리 메서드
@@ -30,7 +29,6 @@ public class CustomJFXToggleButton extends JFXToggleButton {
     public void fire() {
         super.fire();
         sq = new SequentialTransition();
-        Timeline t2 = new Timeline();
         if (super.selectedProperty().get()) {
 
             Circle thumb = getCircleNode();
