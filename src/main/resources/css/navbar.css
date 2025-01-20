@@ -31,7 +31,7 @@
     -fx-background-color: #303552;
     -fx-cursor: hand;
 }
-.focused {
+.clicked {
     -fx-text-fill:white;
 }
 .navGrid {

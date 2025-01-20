@@ -1,6 +1,9 @@
 package com.lolport.controller;
 
 import com.lolport.custom.CustomJFXToggleButton;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -71,22 +74,28 @@ public class NavBarController implements Initializable {
         howImg.setImage(howBlack);
         settingImg.setImage(settingBlack);
 
-        // 토글버튼 녹화 애니메이션
-        toggleBtn.lookup(".thumb");
 
-
-        // 맨 처음 메인페이지가 포커싱 되었을 때 event 발생 시킴
-        homeBtn.focusedProperty().addListener((observableValue, aBoolean, newBoolean) -> {
-            // 지금 포커스가 된 상태라면
-            if (newBoolean) {
+        
+        // 앱 실행시 메인페이지가 선택되게 하는 코드
+        // ??? 메인페이지 버튼에 포커싱 색상이 적용되는 부분 고쳐야함
+        ChangeListener<Boolean> listener = (observableValue, o, t1) -> {
+            // 포커싱이 true라면
+            if (t1) {
                 homeBtn.fire();
             }
+        };
+        homeBtn.focusedProperty().addListener(listener);
+        toggleBtn.setFocusTraversable(false);
+        Platform.runLater(() -> {
+            homeBtn.requestFocus();
+            homeBtn.focusedProperty().removeListener(listener);
         });
     }
 
 
     @FXML
     public void mainPageHandler(ActionEvent e) {
+        System.out.println(12345);
         navBtnClickEventHandler((Button) e.getSource());
         Button source = (Button) e.getSource();
         Parent root = source.getScene().getRoot();
@@ -133,8 +142,8 @@ public class NavBarController implements Initializable {
         // 즉, 글자를 흰색으로, 아이콘을 흰색으로 바꿔줘야함
         Image homeWhite = iconMap.get(findBlackOrWhiteImg(btn.getId(), "White"));
         // toggle용으로 remove를 해주고 add 함수를 이용해 focused를 추가해줌
-        btn.getStyleClass().remove("focused");
-        btn.getStyleClass().add("focused");
+        btn.getStyleClass().remove("clicked");
+        btn.getStyleClass().add("clicked");
         ((ImageView) btn.getGraphic()).setImage(homeWhite);
     }
 
@@ -143,7 +152,7 @@ public class NavBarController implements Initializable {
         navGrid.getChildren().forEach(node -> {
             Button anotherBtn = (Button) node;
             if (!anotherBtn.isFocused()) {
-                anotherBtn.getStyleClass().remove("focused");
+                anotherBtn.getStyleClass().remove("clicked");
                 ((ImageView) anotherBtn.getGraphic()).setImage(iconMap.get(findBlackOrWhiteImg(anotherBtn.getId(), "Black")));
             }
         });
