@@ -77,7 +77,6 @@ public class NavBarController implements Initializable {
 
         
         // 앱 실행시 메인페이지가 선택되게 하는 코드
-        // ??? 메인페이지 버튼에 포커싱 색상이 적용되는 부분 고쳐야함
         ChangeListener<Boolean> listener = (observableValue, o, t1) -> {
             // 포커싱이 true라면
             if (t1) {
@@ -88,6 +87,7 @@ public class NavBarController implements Initializable {
         toggleBtn.setFocusTraversable(false);
         Platform.runLater(() -> {
             homeBtn.requestFocus();
+            homeBtn.getScene().getRoot().requestFocus(); // 메인페이지 버튼에 포커싱 색상 적용되는거 없애는 코드
             homeBtn.focusedProperty().removeListener(listener);
         });
     }
