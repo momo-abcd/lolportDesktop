@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 public class GlobalKeyListener implements NativeKeyListener {
@@ -52,6 +54,24 @@ public class GlobalKeyListener implements NativeKeyListener {
     public void nativeKeyReleased(NativeKeyEvent e) {
         if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL) {
             CaptureOnOff.CTRL_KEY = false;
+        }
+    }
+
+    private void captureScreen(String type) {
+        String userHome = System.getProperty("user.home");
+        File captureFolder = new File(userHome, "Pictures/lolport/" + type);
+        if (!captureFolder.exists()) {
+            captureFolder.mkdirs();
+        }
+
+        try {
+            Robot robot = new Robot();
+            BufferedImage screenCapture = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+            String filename = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss"));
+            File image = new File(captureFolder, filename + ".png");
+            ImageIO.write(screenCapture, "png", image);
+        } catch (AWTException | IOException ex) {
+            throw new RuntimeException(ex);
         }
     }
 }
