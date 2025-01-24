@@ -1,7 +1,10 @@
 package com.lolport.custom;
 
+import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.NativeHookException;
 import com.jfoenix.controls.JFXToggleButton;
 import com.jfoenix.skins.JFXToggleButtonSkin;
+import com.lolport.capture.GlobalKeyListener;
 import javafx.animation.*;
 import javafx.scene.control.Skin;
 import javafx.scene.effect.BlurType;
@@ -12,16 +15,44 @@ import javafx.util.Duration;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class CustomJFXToggleButton extends JFXToggleButton {
+    static Logger logger = Logger.getLogger(CustomJFXToggleButton.class.getPackage().getName());
 
     SequentialTransition sq = new SequentialTransition();
+
+    GlobalKeyListener globalKeyListener;
 
 
     public CustomJFXToggleButton() {
         super();
         this.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/navbar.css")).toExternalForm());
+        this.selectedProperty().addListener((observableValue, prev, now) -> {
+            // 토글을 켰다면
+            if (now) {
+                globalKeyListener = new GlobalKeyListener();
+                try {
+                    GlobalScreen.registerNativeHook();
+                } catch (NativeHookException e) {
+                    System.err.println("There was a problem registering the native hook.");
+                    System.err.println(e.getMessage());
+                }
+                GlobalScreen.addNativeKeyListener(globalKeyListener);
+            }
+            else {
+                try {
+                    GlobalScreen.removeNativeKeyListener(globalKeyListener);
+                    GlobalScreen.unregisterNativeHook();
+                    GlobalScreen.setEventDispatcher(null);
+                } catch (NativeHookException e) {
+                    System.err.println("There was a problem registering the native hook.");
+                    System.err.println(e.getMessage());
+                }
+            }
+        });
     }
 
     // 동그라미에 애니메이션 효과 주기 위한 Event 처리 메서드

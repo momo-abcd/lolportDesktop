@@ -9,23 +9,19 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Native;
-import java.net.URI;
-import java.nio.file.Path;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GlobalKeyListener implements NativeKeyListener {
     static Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
 
-    @Override
-    public void nativeKeyTyped(NativeKeyEvent nativeEvent) {
-        NativeKeyListener.super.nativeKeyTyped(nativeEvent);
-    }
+//    @Override
+//    public void nativeKeyTyped(NativeKeyEvent nativeEvent) {
+//        NativeKeyListener.super.nativeKeyTyped(nativeEvent);
+//    }
 
+    // 키가 눌렀을 때 이벤트 메서드
     @Override
     public void nativeKeyPressed(NativeKeyEvent e) {
-//        Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
         if (CaptureOnOff.CTRL_KEY) {
             if (e.getKeyCode() == NativeKeyEvent.VC_PRINTSCREEN) {
                 logger.info("작동됨");
@@ -39,7 +35,7 @@ public class GlobalKeyListener implements NativeKeyListener {
                     Robot robot = new Robot();
                     BufferedImage screenCapture = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
 
-                    File image = new File(captureFolder,"screenshot.png");
+                    File image = new File(captureFolder, "screenshot.png");
                     ImageIO.write(screenCapture, "png", image);
                 } catch (AWTException | IOException ex) {
                     throw new RuntimeException(ex);
