@@ -1,0 +1,11 @@
+* {
+    -fx-font-family: "Noto Sans KR";
+}
+Label {
+    -fx-font-size: 18px;
+}
+Text {
+    -fx-font-size: 13px;
+}
+AnchorPane {
+}
