@@ -45,10 +45,14 @@ public class Main extends Application {
         stage.sizeToScene();
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) {
         FXMLLoader fxmlLoader = new FXMLLoader(Objects.requireNonNull(Main.class.getResource("/fxml/" + fxml + ".fxml")));
-
-        return fxmlLoader.load();
+        try {
+            return fxmlLoader.load();
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+        return null; // 이렇게 null을 해줘도 되는게 맞나...? 어차피 안쓰일 코드인데 흠..
     }
 
 
