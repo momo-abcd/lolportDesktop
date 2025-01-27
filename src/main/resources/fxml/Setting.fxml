@@ -15,13 +15,13 @@
       <Pane prefHeight="74.0" prefWidth="606.0" styleClass="setting_item">
          <children>
             <Label layoutX="67.0" layoutY="25.0" text="전체 화면 캡처" />
-            <TextField layoutX="200.0" layoutY="25.0" prefHeight="27.0" prefWidth="240.0" promptText="CTRL + PrintScreen" />
+            <TextField disable="true" editable="false" focusTraversable="false" layoutX="200.0" layoutY="25.0" prefHeight="27.0" prefWidth="240.0" text="CTRL + PrintScreen" />
             <Text layoutX="459.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="On/Off">
                <font>
                   <Font size="1.0" />
                </font>
             </Text>
-            <JFXToggleButton layoutX="505.0" layoutY="8.0" selected="true" text=" " />
+            <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
             <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="568.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/setting/overlayEditIcon.png" />
@@ -32,13 +32,13 @@
       <Pane layoutY="74.0" prefHeight="74.0" prefWidth="606.0" styleClass="setting_item">
          <children>
             <Label layoutX="69.0" layoutY="25.0" text="채팅 화면 캡처" />
-            <TextField layoutX="200.0" layoutY="25.0" prefHeight="27.0" prefWidth="240.0" promptText="CTRL + PrintScreen" />
+            <TextField disable="true" editable="false" focusTraversable="false" layoutX="200.0" layoutY="25.0" prefHeight="27.0" prefWidth="240.0" text="CTRL + Z + PrintScreen" />
             <Text layoutX="459.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="On/Off">
                <font>
                   <Font size="1.0" />
                </font>
             </Text>
-            <JFXToggleButton layoutX="505.0" layoutY="8.0" selected="true" text=" " />
+            <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
             <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="568.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/setting/overlayEditIcon.png" />
@@ -49,13 +49,13 @@
       <Pane layoutY="148.0" prefHeight="74.0" prefWidth="606.0" styleClass="setting_item">
          <children>
             <Label layoutX="69.0" layoutY="25.0" text="탭 화면 캡처" />
-            <TextField layoutX="200.0" layoutY="25.0" prefHeight="27.0" prefWidth="240.0" promptText="CTRL + PrintScreen" />
+            <TextField disable="true" editable="false" focusTraversable="false" layoutX="200.0" layoutY="25.0" prefHeight="27.0" prefWidth="240.0" text="CTRL + Tab + PrintScreen" />
             <Text layoutX="459.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="On/Off">
                <font>
                   <Font size="1.0" />
                </font>
             </Text>
-            <JFXToggleButton layoutX="505.0" layoutY="8.0" selected="true" text=" " />
+            <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
             <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="568.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/setting/overlayEditIcon.png" />
@@ -71,7 +71,7 @@
                   <Font size="1.0" />
                </font>
             </Text>
-            <JFXToggleButton layoutX="505.0" layoutY="8.0" selected="true" text=" " />
+            <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
          </children>
       </Pane>
       <Pane layoutY="296.0" prefHeight="74.0" prefWidth="606.0" styleClass="setting_item">
@@ -82,7 +82,7 @@
                   <Font size="1.0" />
                </font>
             </Text>
-            <JFXToggleButton layoutX="505.0" layoutY="8.0" selected="true" text=" " />
+            <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
          </children>
       </Pane>
    </children>

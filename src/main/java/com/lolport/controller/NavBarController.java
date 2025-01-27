@@ -1,12 +1,15 @@
 package com.lolport.controller;
 
+import com.lolport.Main;
 import com.lolport.custom.CustomJFXToggleButton;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -75,7 +78,6 @@ public class NavBarController implements Initializable {
         settingImg.setImage(settingBlack);
 
 
-        
         // 앱 실행시 메인페이지가 선택되게 하는 코드
         ChangeListener<Boolean> listener = (observableValue, o, t1) -> {
             // 포커싱이 true라면
@@ -95,8 +97,13 @@ public class NavBarController implements Initializable {
 
     @FXML
     public void mainPageHandler(ActionEvent e) {
-        System.out.println(12345);
+        Pane contentContainer = (Pane) ((Node) e.getSource()).getScene().getRoot().getChildrenUnmodifiable().get(1);
+        if (!contentContainer.getChildren().isEmpty()) // 메인페이지는 이전 contentBar가 없을 수 있으므로 비어있는지 확인 해줘야함
+            contentContainer.getChildren().remove(contentContainer.getChildren().get(0)); // 기존에 있던 화면은 지워줌
+
         navBtnClickEventHandler((Button) e.getSource());
+
+        // main 페이지 작업할 때 지워줘야함 START
         Button source = (Button) e.getSource();
         Parent root = source.getScene().getRoot();
         root.getChildrenUnmodifiable().forEach(node -> {
@@ -108,6 +115,7 @@ public class NavBarController implements Initializable {
                 ((Pane) node).getChildren().addAll(text);
             }
         });
+        // END
     }
 
     @FXML
@@ -129,6 +137,15 @@ public class NavBarController implements Initializable {
 
     @FXML
     public void settingHandler(ActionEvent e) {
+        Pane contentContainer = (Pane) ((Node) e.getSource()).getScene().getRoot().getChildrenUnmodifiable().get(1);
+
+        contentContainer.getChildren().remove(contentContainer.getChildren().get(0)); // 기존에 있던 화면은 지워줌
+
+        Pane settingPane = (Pane) Main.loadFXML("Setting");
+        settingPane.setLayoutX(50);
+        settingPane.setLayoutY(100);
+
+        contentContainer.getChildren().add(settingPane);
         navBtnClickEventHandler((Button) e.getSource());
     }
 
