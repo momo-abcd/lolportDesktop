@@ -7,5 +7,6 @@ Label {
 Text {
     -fx-font-size: 13px;
 }
-AnchorPane {
+ImageView {
+    -fx-cursor:hand
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane stylesheets="@../css/setting.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane stylesheets="@../css/setting.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lolport.controller.SettingController">
    <children>
       <Pane prefHeight="74.0" prefWidth="606.0" styleClass="setting_item">
          <children>
@@ -22,11 +23,15 @@
                </font>
             </Text>
             <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
-            <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="568.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/setting/overlayEditIcon.png" />
-               </image>
-            </ImageView>
+            <JFXButton layoutX="562.0" layoutY="23.0" text=" ">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/setting/overlayEditIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
       <Pane layoutY="74.0" prefHeight="74.0" prefWidth="606.0" styleClass="setting_item">
@@ -39,11 +44,15 @@
                </font>
             </Text>
             <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
-            <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="568.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/setting/overlayEditIcon.png" />
-               </image>
-            </ImageView>
+            <JFXButton layoutX="562.0" layoutY="23.0" text=" ">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/setting/overlayEditIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
       <Pane layoutY="148.0" prefHeight="74.0" prefWidth="606.0" styleClass="setting_item">
@@ -56,11 +65,15 @@
                </font>
             </Text>
             <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
-            <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="568.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/setting/overlayEditIcon.png" />
-               </image>
-            </ImageView>
+            <JFXButton fx:id="tabSettingBtn" layoutX="562.0" layoutY="23.0" text=" ">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/setting/overlayEditIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
          </children>
       </Pane>
       <Pane layoutY="222.0" prefHeight="74.0" prefWidth="606.0" styleClass="setting_item">
