@@ -7,8 +7,8 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
@@ -24,46 +24,44 @@ public class GlobalKeyListener implements NativeKeyListener {
     // 키가 눌렀을 때 이벤트 메서드
     @Override
     public void nativeKeyPressed(NativeKeyEvent e) {
-        if (CaptureOnOff.CTRL_KEY) {
-            if (e.getKeyCode() == NativeKeyEvent.VC_PRINTSCREEN) {
-                logger.info("작동됨");
-                String userHome = System.getProperty("user.home");
-                File captureFolder = new File(userHome, "Pictures/lolport");
-                if (!captureFolder.exists()) {
-                    captureFolder.mkdirs();
-                }
-
-                try {
-                    Robot robot = new Robot();
-                    BufferedImage screenCapture = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-
-                    File image = new File(captureFolder, "screenshot.png");
-                    ImageIO.write(screenCapture, "png", image);
-                } catch (AWTException | IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-
+        // 프린트스크린 키가 눌렸다면 알 맞은 캡쳐 메서드를 호출해줌
+        if (e.getKeyCode() == NativeKeyEvent.VC_PRINTSCREEN) {
+            if (!CaptureOnOff.CTRL_KEY) return;
+            if (CaptureOnOff.Z) {
+                captureScreen("chat");
+                return;
             }
+            if (CaptureOnOff.TAB) {
+                captureScreen("tab");
+                return;
+            }
+            captureScreen("full");
         }
-        if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL && !CaptureOnOff.CTRL_KEY) {
-            CaptureOnOff.CTRL_KEY = true;
-        }
+        if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL) CaptureOnOff.CTRL_KEY = true;
+        if (e.getKeyCode() == NativeKeyEvent.VC_Z) CaptureOnOff.Z = true;
+        if (e.getKeyCode() == NativeKeyEvent.VC_TAB) CaptureOnOff.TAB = true;
     }
 
     @Override
     public void nativeKeyReleased(NativeKeyEvent e) {
-        if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL) {
-            CaptureOnOff.CTRL_KEY = false;
-        }
+        if (e.getKeyCode() == NativeKeyEvent.VC_CONTROL) CaptureOnOff.CTRL_KEY = false;
+        if (e.getKeyCode() == NativeKeyEvent.VC_Z) CaptureOnOff.Z = false;
+        if (e.getKeyCode() == NativeKeyEvent.VC_TAB) CaptureOnOff.TAB = false;
     }
 
     private void captureScreen(String type) {
+        // 캡처 기능 설정이 꺼져 있으면 화면캡처 실행하지 않음
+        if(!getCaptureConfigStatus(type)) return;
+
+        // 사진을 생성할 폴더가 없을 시 폴더를 새로 만들어줌
         String userHome = System.getProperty("user.home");
-        File captureFolder = new File(userHome, "Pictures/lolport/" + type);
+        File captureFolder = new File(userHome, "/Pictures/lolport/" + type+ "/");
         if (!captureFolder.exists()) {
             captureFolder.mkdirs();
         }
 
+        // 실제로 캡쳐 기능을 담당하는 부분
+        // !!! 여기서 각 캡쳐별 상자의 크기, 위치 정보를 가져와서 알맞게 코드를 작성해야함
         try {
             Robot robot = new Robot();
             BufferedImage screenCapture = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
@@ -73,5 +71,23 @@ public class GlobalKeyListener implements NativeKeyListener {
         } catch (AWTException | IOException ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    // 각 캡처 기능의 설정 값을 읽어오는 메서드
+    private boolean getCaptureConfigStatus(String type) {
+        try {
+            File config = new File(getClass().getResource("/.lolport.conf").toURI());
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(config)));
+            String curConfig = "";
+            while ((curConfig = br.readLine()) != null) {
+                String[] input = curConfig.split("=");
+                if (input[0].equals(type + "screencapture")) {
+                    return input[1].equals("true");
+                }
+            }
+        } catch (URISyntaxException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }
