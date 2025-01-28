@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -23,7 +24,7 @@
                </font>
             </Text>
             <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
-            <JFXButton layoutX="562.0" layoutY="23.0" text=" ">
+            <JFXButton fx:id="fullSettingBtn" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="562.0" layoutY="23.0" onAction="#modifyFullScreenCaptureSetting" text=" ">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -31,6 +32,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </Pane>
@@ -44,7 +48,7 @@
                </font>
             </Text>
             <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
-            <JFXButton layoutX="562.0" layoutY="23.0" text=" ">
+            <JFXButton contentDisplay="CENTER" graphicTextGap="0.0" layoutX="562.0" layoutY="23.0" text=" ">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,6 +56,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </Pane>
@@ -65,7 +72,7 @@
                </font>
             </Text>
             <JFXToggleButton focusTraversable="false" layoutX="505.0" layoutY="8.0" selected="true" text=" " toggleColor="#748bf1" toggleLineColor="#717a9e" />
-            <JFXButton fx:id="tabSettingBtn" layoutX="562.0" layoutY="23.0" text=" ">
+            <JFXButton fx:id="tabSettingBtn" buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="562.0" layoutY="23.0" text=" ">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -73,6 +80,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </Pane>

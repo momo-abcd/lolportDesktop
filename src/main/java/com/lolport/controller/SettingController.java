@@ -8,10 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class SettingController implements Initializable {
@@ -25,7 +28,10 @@ public class SettingController implements Initializable {
 //    private final Scene settingScene;
 //    private final VBox contentSide; // 프로그램의 오른쪽 화면에대한 노드 (dock 사이드, 컨탠츠 사이드 두 개 존재)
 
-    public SettingController(){};
+    public SettingController() {
+    }
+
+    ;
 
 //    public SettingController(Stage stage, Scene settingScene) {
 //        this.stage = stage;
@@ -53,6 +59,15 @@ public class SettingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
 
+    // 풀스크린캡쳐 톱니바퀴(설정버튼) 눌렀을 떄 실행되는 핸들러 메서드
+    @FXML
+    private void modifyFullScreenCaptureSetting() {
+        Stage stage = (Stage) fullSettingBtn.getScene().getWindow();
+        Scene prevScene = fullSettingBtn.getScene(); // 세팅하고 돌아와야할 scene (필수로 되돌려줘야함!!)
+        Scene newScene = new Scene(new Pane());
+        Pane pane = new Pane();
+        OverLay chatOverLay = new ChatOverlayImpl(stage, newScene, pane);
     }
 }

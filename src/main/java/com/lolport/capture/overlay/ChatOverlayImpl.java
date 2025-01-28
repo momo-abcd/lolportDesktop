@@ -1,23 +1,29 @@
 package com.lolport.capture.overlay;
 
+import javafx.geometry.Bounds;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-
 import java.awt.*;
+import java.util.Objects;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
 public class ChatOverlayImpl implements OverLay {
     private Canvas canvas;
     private GraphicsContext gc;
+
+    private Rectangle box;
 
     private Pane fullScreenPane;
 
@@ -52,11 +58,69 @@ public class ChatOverlayImpl implements OverLay {
         fullScreenPane = new Pane();
         fullScreenPane.getChildren().add(this.canvas);
         fullScreenPane.setBackground(Background.fill(Color.web("#000000", 0)));
+
+        fullScreenPane.setOnMouseMoved(mouseEvent -> {
+            if (box == null) return; // box가 아직 활성화 되지 않았다면 함수 종료해줌 근데 이 메서드가 꼭 필요한건지는 모르겠음 ???
+
+            String pos = checkMousePos(mouseEvent.getX(), mouseEvent.getY());
+
+            changeMouseCursor( fullScreenPane, pos); // 마우스커서를 화살표로 바꿔줌
+        });
+
         newScene = new Scene(fullScreenPane, screen.getWidth(), screen.getHeight(), Color.TRANSPARENT);
         newScene.setRoot(fullScreenPane);
         stage.setScene(newScene);
         stage.setX(0);
         stage.setY(0);
+    }
+
+    // 오버레이 사각형 주의에 마우스가 오면 마우스 커서를 알맞은 화살표로 바꿔주는 메서드
+    private void changeMouseCursor(Pane fullScreenPane, String pos) {
+        if(pos.equals("default")) {
+            fullScreenPane.setCursor(Cursor.DEFAULT);
+            return;
+        }
+        if(pos.equals("leftSide") || pos.equals("rightSide")){
+            javafx.scene.image.Image image = new Image(Objects.requireNonNull(getClass().getResource("/images/setting/mouseHorizontalArrow.png")).toString());
+            fullScreenPane.setCursor(new ImageCursor(image, image.getWidth()/2, image.getHeight() / 2));
+            return;
+        }
+        if(pos.equals("topSide") || pos.equals("bottomSide")){
+            javafx.scene.image.Image image = new Image(Objects.requireNonNull(getClass().getResource("/images/setting/mouseVerticalArrow.png")).toString());
+            fullScreenPane.setCursor(new ImageCursor(image, image.getWidth()/2, image.getHeight() / 2));
+        }
+
+    }
+
+    // 마우스가 오버레이 박스의 어느 위치에 있는지 체크
+    private String checkMousePos(double mouseX, double mouseY) {
+        Bounds bounds = box.localToScene(box.getBoundsInLocal());
+        double boxX = bounds.getMinX();
+        double boxY = bounds.getMinY();
+
+        double width = box.getWidth();
+        double height = box.getHeight();
+
+        double boundary = 5;
+
+        if(boxX + width < mouseX && mouseX < boxX+width+boundary && boxY < mouseY && mouseY < boxY + height) {
+            return "rightSide";
+        }
+        else if(boxX-boundary < mouseX && mouseX < boxX && boxY < mouseY && mouseY < boxY + height){
+            return "leftSide";
+        }
+        else if(boxX < mouseX && mouseX < boxX + width && boxY-boundary < mouseY && mouseY < boxY) {
+            return "topSide";
+        }
+        else if(boxX < mouseX && mouseX < boxX + width && boxY + height < mouseY && mouseY < boxY+height + boundary) {
+            return "bottomSide";
+        }
+        else {
+            return "default";
+        }
+
+
+
     }
 
     @Override
@@ -68,10 +132,12 @@ public class ChatOverlayImpl implements OverLay {
     // 여기서 생성한 fullScreenPane을 Scene에 붙여야함
     public void drawOverlayBox() {
 //        fullScreenPane = new Pane();
-        Rectangle box = new Rectangle(100, 100, Color.web("#000000", 0.01));
+        box = new Rectangle(100, 100, Color.web("#000000", 0.01));
 //        box.setOpacity(0.1);
         box.setStroke(Color.BLUE);
         box.setStrokeWidth(3.0);
+        box.setLayoutX(500);
+        box.setLayoutY(500);
         fullScreenPane.getChildren().add(box);
 
         // Initial offsets for dragging
