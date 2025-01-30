@@ -59,12 +59,48 @@ public class ChatOverlayImpl implements OverLay {
         fullScreenPane.getChildren().add(this.canvas);
         fullScreenPane.setBackground(Background.fill(Color.web("#000000", 0)));
 
+
+        // 마우스 위치에 따라서 이벤트 적용
         fullScreenPane.setOnMouseMoved(mouseEvent -> {
             if (box == null) return; // box가 아직 활성화 되지 않았다면 함수 종료해줌 근데 이 메서드가 꼭 필요한건지는 모르겠음 ???
 
             String pos = checkMousePos(mouseEvent.getX(), mouseEvent.getY());
 
-            changeMouseCursor( fullScreenPane, pos); // 마우스커서를 화살표로 바꿔줌
+            changeMouseCursor(fullScreenPane, pos); // 마우스커서를 화살표로 바꿔줌
+        });
+
+        fullScreenPane.setOnMouseClicked(mouseEvent -> {
+        });
+        fullScreenPane.setOnMouseDragged(mouseEvent -> {
+
+            switch (checkMousePos(mouseEvent.getX(), mouseEvent.getY())) {
+                case "leftSide":
+                    box.setWidth(box.getLayoutX() - mouseEvent.getX() + box.getWidth());
+                    box.setLayoutX(box.getLayoutX() - (box.getLayoutX() - mouseEvent.getX()));
+                    break;
+                case "rightSide":
+                    double x = box.getLayoutX() + box.getWidth();
+                    double mx = mouseEvent.getX();
+                    double width = box.getWidth();
+                    // 즐어들어야함
+                    if (x > mx) {
+                        box.setWidth(x - mx + width);
+                    }
+                    // 길어져야함
+                    else {
+                        box.setWidth(mx-x+width);
+                    }
+                    break;
+                case "topSide":
+                    box.setHeight(box.getHeight() + box.getLayoutY() - mouseEvent.getY());
+                    box.setLayoutY(mouseEvent.getY());
+                    break;
+                case "bottomSide":
+                    break;
+                default:
+                    break;
+
+            }
         });
 
         newScene = new Scene(fullScreenPane, screen.getWidth(), screen.getHeight(), Color.TRANSPARENT);
@@ -76,18 +112,18 @@ public class ChatOverlayImpl implements OverLay {
 
     // 오버레이 사각형 주의에 마우스가 오면 마우스 커서를 알맞은 화살표로 바꿔주는 메서드
     private void changeMouseCursor(Pane fullScreenPane, String pos) {
-        if(pos.equals("default")) {
+        if (pos.equals("default")) {
             fullScreenPane.setCursor(Cursor.DEFAULT);
             return;
         }
-        if(pos.equals("leftSide") || pos.equals("rightSide")){
+        if (pos.equals("leftSide") || pos.equals("rightSide")) {
             javafx.scene.image.Image image = new Image(Objects.requireNonNull(getClass().getResource("/images/setting/mouseHorizontalArrow.png")).toString());
-            fullScreenPane.setCursor(new ImageCursor(image, image.getWidth()/2, image.getHeight() / 2));
+            fullScreenPane.setCursor(new ImageCursor(image, image.getWidth() / 2, image.getHeight() / 2));
             return;
         }
-        if(pos.equals("topSide") || pos.equals("bottomSide")){
+        if (pos.equals("topSide") || pos.equals("bottomSide")) {
             javafx.scene.image.Image image = new Image(Objects.requireNonNull(getClass().getResource("/images/setting/mouseVerticalArrow.png")).toString());
-            fullScreenPane.setCursor(new ImageCursor(image, image.getWidth()/2, image.getHeight() / 2));
+            fullScreenPane.setCursor(new ImageCursor(image, image.getWidth() / 2, image.getHeight() / 2));
         }
 
     }
@@ -101,24 +137,19 @@ public class ChatOverlayImpl implements OverLay {
         double width = box.getWidth();
         double height = box.getHeight();
 
-        double boundary = 5;
+        double boundary = 20;
 
-        if(boxX + width < mouseX && mouseX < boxX+width+boundary && boxY < mouseY && mouseY < boxY + height) {
+        if (boxX + width < mouseX && mouseX < boxX + width + boundary && boxY < mouseY && mouseY < boxY + height) {
             return "rightSide";
-        }
-        else if(boxX-boundary < mouseX && mouseX < boxX && boxY < mouseY && mouseY < boxY + height){
+        } else if (boxX - boundary < mouseX && mouseX < boxX && boxY < mouseY && mouseY < boxY + height) {
             return "leftSide";
-        }
-        else if(boxX < mouseX && mouseX < boxX + width && boxY-boundary < mouseY && mouseY < boxY) {
+        } else if (boxX < mouseX && mouseX < boxX + width && boxY - boundary < mouseY && mouseY < boxY) {
             return "topSide";
-        }
-        else if(boxX < mouseX && mouseX < boxX + width && boxY + height < mouseY && mouseY < boxY+height + boundary) {
+        } else if (boxX < mouseX && mouseX < boxX + width && boxY + height < mouseY && mouseY < boxY + height + boundary) {
             return "bottomSide";
-        }
-        else {
+        } else {
             return "default";
         }
-
 
 
     }
