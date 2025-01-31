@@ -3,6 +3,9 @@ package com.lolport.capture;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
+import com.lolport.capture.overlay.ChatOverlayImpl;
+import com.lolport.util.ConfigControl;
+import javafx.scene.shape.Rectangle;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -51,7 +54,7 @@ public class GlobalKeyListener implements NativeKeyListener {
 
     private void captureScreen(String type) {
         // 캡처 기능 설정이 꺼져 있으면 화면캡처 실행하지 않음
-        if(!getCaptureConfigStatus(type)) return;
+        if(!ConfigControl.isCaptureTypeOnOff(type)) return;
 
         // 사진을 생성할 폴더가 없을 시 폴더를 새로 만들어줌
         String userHome = System.getProperty("user.home");
@@ -64,30 +67,14 @@ public class GlobalKeyListener implements NativeKeyListener {
         // !!! 여기서 각 캡쳐별 상자의 크기, 위치 정보를 가져와서 알맞게 코드를 작성해야함
         try {
             Robot robot = new Robot();
-            BufferedImage screenCapture = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+//            BufferedImage screenCapture = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+            Rectangle box = ChatOverlayImpl.box;
+            BufferedImage screenCapture = robot.createScreenCapture(new java.awt.Rectangle(500, 350, 400, 200));
             String filename = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss"));
             File image = new File(captureFolder, filename + ".png");
             ImageIO.write(screenCapture, "png", image);
         } catch (AWTException | IOException ex) {
             throw new RuntimeException(ex);
         }
-    }
-
-    // 각 캡처 기능의 설정 값을 읽어오는 메서드
-    private boolean getCaptureConfigStatus(String type) {
-        try {
-            File config = new File(getClass().getResource("/.lolport.conf").toURI());
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(config)));
-            String curConfig = "";
-            while ((curConfig = br.readLine()) != null) {
-                String[] input = curConfig.split("=");
-                if (input[0].equals(type + "screencapture")) {
-                    return input[1].equals("true");
-                }
-            }
-        } catch (URISyntaxException | IOException e) {
-            throw new RuntimeException(e);
-        }
-        return false;
     }
 }

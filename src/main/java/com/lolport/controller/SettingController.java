@@ -68,6 +68,6 @@ public class SettingController implements Initializable {
         Scene prevScene = fullSettingBtn.getScene(); // 세팅하고 돌아와야할 scene (필수로 되돌려줘야함!!)
         Scene newScene = new Scene(new Pane());
         Pane pane = new Pane();
-        OverLay chatOverLay = new ChatOverlayImpl(stage, newScene, pane);
+        OverLay chatOverLay = new ChatOverlayImpl(stage, prevScene, pane);
     }
 }
